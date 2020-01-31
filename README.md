@@ -2,7 +2,9 @@
 Easily and quickly upload rich media to Firebase Storage. This library safely handles all of the lower level firebase storage transactions, whilst providing a sensible interface to synchronize your frontend with the transaction state.
 
 <a href="#badge">
-    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"></a>
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+</a>
+
 
 <p align="center">
   <img src="./public/image.jpg" width="640" height="360" />
