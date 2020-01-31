@@ -6,6 +6,7 @@ Easily and quickly upload rich media to Firebase Storage. This library safely ha
 </a>
 
 <br />
+<br />
 
 <p align="center">
   <img src="./public/image.jpg" width="640" height="360" />
