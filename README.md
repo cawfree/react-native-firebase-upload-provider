@@ -16,13 +16,13 @@ Easily and quickly upload rich media to Firebase Storage. This library safely ha
 
 Using [`npm`]():
 
-```bash
+```shell
 npm install --save react-native-firebase-upload-provider
 ```
 
 Using [`yarn`]():
 
-```bash
+```shell
 yarn add react-native-firebase-upload-provider
 ```
 
