@@ -94,7 +94,7 @@ const [uploadId, beginUpload] = requestUpload('file://path/to/some/asset.jpeg');
   
   The `uploadId` is an internal [`uuidv4`](https://www.npmjs.com/package/uuid) which is used to uniquely track the transaction of the specified file, whilst `beginUpload` is a function which when invoked attempts to start the transaction, or restart the transaction if it had previously failed.
 
-  Upon completion, `beginUpload` resolves with the raw result of the transaction.
+  Upon completion, `beginUpload` resolves with the raw transaction, i.e. you can make a call to `getDownloadURL()` or `getMetadata()`.
 
 #### 2.2 `useUploads()`
 
