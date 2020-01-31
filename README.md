@@ -5,6 +5,7 @@ Easily and quickly upload rich media to Firebase Storage. This library safely ha
     <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
 </a>
 
+<br />
 
 <p align="center">
   <img src="./public/image.jpg" width="640" height="360" />
