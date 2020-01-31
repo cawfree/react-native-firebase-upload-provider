@@ -22,7 +22,6 @@ yarn add react-native-firebase-upload-provider
   - Once your project is hooked up, head over to your project in [Firebase](https://firebase.google.com/) and make sure you've [enabled Firebase Storage](https://firebase.google.com/docs/storage/web/start).
   - Finally, you'll need to make sure your application has the appropriate permissions to write to the storage bucket.
     - By default, they do not permit anything to be written. For testing purposes, you can go ahead and turn `false` into `true` to permit anyone to read and write.
-    - **Note**: This is not a safe configuration to use within a production environment, and you **will** regret it.
 
 ```
 rules_version = '2';
@@ -35,6 +34,7 @@ service firebase.storage {
 }
 
 ```
+> ⚠️   **Note**: This is not a safe configuration to use within a production environment, and you **will** regret it.
 
 ## ✍️ Usage
 
