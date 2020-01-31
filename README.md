@@ -1,7 +1,7 @@
 # react-native-firebase-upload-provider
-📸Easily and quickly upload rich media to Firebase Storage. This library safely handles all of the lower level firebase storage transactions, whilst providing a sensible interface to synchronize your frontend with the transaction state.
+Easily and quickly upload rich media to Firebase Storage. This library safely handles all of the lower level firebase storage transactions, whilst providing a sensible interface to synchronize your frontend with the transaction state.
 
-## Getting Started 
+## 🚀 Getting Started 
 
 Using [`npm`]():
 
@@ -15,7 +15,7 @@ Using [`yarn`]():
 yarn add react-native-firebase-upload-provider
 ```
 
-## Requirements
+## 📋 Requirements
 
   - Make sure you've added the `google-services.json` and `GoogleService-Info.plist` to your `*/android/app/` and `*/ios/` directories respectively.
     - If this sounds new to you, it would be worth checking out the [Getting Started](https://rnfirebase.io/docs/v5.x.x/getting-started) tutorials on [react-native-firebase](https://rnfirebase.io/).
@@ -36,7 +36,7 @@ service firebase.storage {
 
 ```
 
-## Usage
+## ✍️ Usage
 
 ### 1. First, wrap your application with the `FirebaseUploadProvider`:
 
@@ -100,6 +100,6 @@ return (
 
   This allows you to easily synchronize the interface presented to your user with the ongoing transaction.
 
-## License
+## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
   
