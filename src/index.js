@@ -103,16 +103,16 @@ const shouldUpload = (uploadId, mutate, createRef) =>
       const uploadTask = ref.putFile(uri, { contentType });
       // XXX: Asynchronously update state.
       publishTaskUpdates(uploadTask, mutate, uploadId);
-      return uploadTask;
+      return uploadTask.then(() => ref);
     })
-    .then(uploadResult => {
+    .then(ref => {
       mutate(state =>
         state.set(
           uploadId,
           updateTaskStatus(state.get(uploadId), TaskStatus.FINISHED)
         )
       );
-      return Promise.resolve(uploadResult);
+      return Promise.resolve(ref);
     })
     .catch(e => {
       mutate(state =>
