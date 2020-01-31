@@ -1,6 +1,10 @@
 # react-native-firebase-upload-provider
 Easily and quickly upload rich media to Firebase Storage. This library safely handles all of the lower level firebase storage transactions, whilst providing a sensible interface to synchronize your frontend with the transaction state.
 
+<p align="center">
+  <img src="./public/image.jpg" width="640" height="360" />
+</p>
+
 ## 🚀 Getting Started 
 
 Using [`npm`]():
