@@ -1,0 +1,20 @@
+{
+  "name": "react-native-firebase-upload-provider",
+  "version": "0.0.1",
+  "description": "📸Easily and quickly upload rich media to Firebase Storage.",
+  "main": "index.js",
+  "repository": "https://github.com/cawfree/react-native-firebase-upload-provider",
+  "author": "Alex Thomas (@cawfree) <hello@cawfree.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0"
+  },
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "react-native-mime-types": "^2.2.1",
+    "react-use-mutator": "^0.0.1",
+    "uuid": "^3.4.0"
+  }
+}
