@@ -54,7 +54,7 @@ service firebase.storage {
 
 ```javascript
 import React from 'react';
-import { Text } from 'react-native-firebase';
+import { Text } from 'react-native';
 import FirebaseUploadProvider from 'react-native-firebase-upload-provider';
 
 export default () => (
