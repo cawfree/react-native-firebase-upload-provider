@@ -34,12 +34,13 @@ yarn add react-native-firebase-upload-provider
   - Finally, you'll need to make sure your application has the appropriate permissions to write to the storage bucket.
     - By default, they do not permit anything to be written. For testing purposes, you can go ahead and turn `false` into `true` to permit anyone to read and write.
 
-```
+```git
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     match /{allPaths=**} {
-      allow read, write: if false;
+(-)      allow read, write: if false;
+(+)      allow read, write: if true;
     }
   }
 }
