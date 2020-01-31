@@ -4,6 +4,7 @@ import { Map } from 'immutable';
 import { useMutator } from 'react-use-mutator';
 import uuidv4 from 'uuid/v4';
 import { lookup } from 'react-native-mime-types';
+import storage from '@react-native-firebase/storage';
 
 export const TaskStatus = {
   CREATED: 0,
@@ -44,7 +45,7 @@ const updateTaskStatus = (task, status) => Object.freeze({
   status,
 });
 
-const shouldUpload = (uploadId, mutate) => Promise
+const shouldUpload = (uploadId, mutate, createRef) => Promise
   .resolve()
   .then(
     () => {
@@ -65,6 +66,7 @@ const shouldUpload = (uploadId, mutate) => Promise
           new Error('This task is not in the correct state to be uploaded.'),
         );
       }
+
       return Promise
         .reject(
           new Error(`Attempted to upload an unrecogized uploadId, "${uploadId}".`),
@@ -73,11 +75,15 @@ const shouldUpload = (uploadId, mutate) => Promise
   )
   .then(
     (taskState) => {
-      return Promise.reject('do not know how to upload');
+      const { uri, mimeType: contentType } = taskState;
+      const ref = createRef(uploadId, taskState);
+      const uploadTask = ref.putFile(uri, { contentType });
+      return uploadTask;
+      //return Promise.reject('still do not know how to upload');
     },
   );
 
-const requestUploadThunk = (mutate, supportedMimeTypes) => (uri) => {
+const requestUploadThunk = (mutate, supportedMimeTypes, createRef) => (uri, customCreateRef = null) => {
   const mimeType = lookup(uri);
   // TODO: Need to validate the uri and mimeType
   if (typeof uri !== 'string' || uri.length === 0) {
@@ -94,15 +100,15 @@ const requestUploadThunk = (mutate, supportedMimeTypes) => (uri) => {
       createTask(uri, mimeType),
     ),
   );
-  return [uploadId, () => shouldUpload(uploadId, mutate)];
+  return [uploadId, () => shouldUpload(uploadId, mutate, (customCreateRef || createRef))];
 };
 
-const FirebaseUploadProvider = ({ supportedMimeTypes, ...extraProps }) => {
+const FirebaseUploadProvider = ({ supportedMimeTypes, createRef, ...extraProps }) => {
   const [useUploads, mutate] = useMutator(
     () => Map(),
   );
   const [requestUpload] = useState(
-    () => requestUploadThunk(mutate, supportedMimeTypes),
+    () => requestUploadThunk(mutate, supportedMimeTypes, createRef),
   );
   return (
     <FirebaseUploadContext.Provider
@@ -120,10 +126,14 @@ const FirebaseUploadProvider = ({ supportedMimeTypes, ...extraProps }) => {
 
 FirebaseUploadProvider.propTypes = {
   supportedMimeTypes: PropTypes.arrayOf(PropTypes.string),
+  createRef: PropTypes.func,
 };
 
 FirebaseUploadProvider.defaultProps = {
   supportedMimeTypes: defaultMimeTypes,
+  createRef: (taskId, { mimeType }) => storage()
+    .ref(mimeType)
+    .child(taskId),
 };
 
 export default FirebaseUploadProvider;
