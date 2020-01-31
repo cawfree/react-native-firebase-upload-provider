@@ -15,7 +15,7 @@ Using [`yarn`]():
 yarn add react-native-firebase-upload-provider
 ```
 
-## 📋 Requirements
+## 📋 Prerequisites
 
   - Make sure you've added the `google-services.json` and `GoogleService-Info.plist` to your `*/android/app/` and `*/ios/` directories respectively.
     - If this sounds new to you, it would be worth checking out the [Getting Started](https://rnfirebase.io/docs/v5.x.x/getting-started) tutorials on [react-native-firebase](https://rnfirebase.io/).
