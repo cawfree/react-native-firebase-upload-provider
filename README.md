@@ -38,7 +38,7 @@ service firebase.storage {
 
 ## Usage
 
-1. First, wrap your application with the `FirebaseUploadProvider`:
+### 1. First, wrap your application with the `FirebaseUploadProvider`:
 
 ```javascript
 import React from 'react';
@@ -61,7 +61,7 @@ export default () => (
 
 This provides all of the data dependencies required to perform a file upload from basically anywhere in your application. In particular, notice that we're required to specify which [Mime Types](https://www.npmjs.com/package/mime-types) are permitted to be uploaded to your [Storage Bucket](https://cloud.google.com/storage/docs/creating-buckets). By default, no mime types are specified as a safeguard to prevent any users from uploading potentially undesirable content.
 
-2. Next, there are the [hooks](https://reactjs.org/docs/hooks-intro.html). There are two you'll be interested in:
+### 2. Next, there are the [hooks](https://reactjs.org/docs/hooks-intro.html). There are two you'll be interested in:
 
 ```javascript
 import { useFirebaseUploads } from 'react-native-firebase-upload-provider';
@@ -72,7 +72,8 @@ const UploadButton = ({ ...extraProps }) => {
 }
 ```
 
-  2.1 `requestUpload(uri)`
+#### 2.1 `requestUpload(uri)`
+
   This hook is used to upload an asset from the local filesystem up to firebase. It is a **synchronous** call, which when invoked returns an array with the following shape:
 
 ```javascript
@@ -83,7 +84,8 @@ const [uploadId, beginUpload] = requestUpload('file://path/to/some/asset.jpeg');
 
   Upon completion, `beginUpload` resolves with the raw result of the transaction.
 
-  2.2 `useUploads()`
+#### 2.2 `useUploads()`
+
   This hook allows you to interrogate the state of the ongoing transactions, and have your registered component re-rensder when any of the transactions have been updated. This is how we can determine things like the state of the task, the number of `bytesTransferred` and the `totalNumberOfBytes`, etc.
 
 ```javascript
