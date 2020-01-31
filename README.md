@@ -86,7 +86,7 @@ const [uploadId, beginUpload] = requestUpload('file://path/to/some/asset.jpeg');
 
 #### 2.2 `useUploads()`
 
-  This hook allows you to interrogate the state of the ongoing transactions, and have your registered component re-rensder when any of the transactions have been updated. This is how we can determine things like the state of the task, the number of `bytesTransferred` and the `totalNumberOfBytes`, etc.
+  This hook allows you to interrogate the state of the ongoing transactions, and have your registered component re-render when any of the transactions have been updated. This is how we can determine things like the state of the task, the number of `bytesTransferred` and the `totalNumberOfBytes`, etc.
 
 ```javascript
 const { useUploads } = useFirebaseUploads();
