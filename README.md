@@ -46,7 +46,7 @@ service firebase.storage {
 }
 
 ```
-> ⚠️   **Note**: This is not a safe configuration to use within a production environment, and you **will** regret it.
+> ⚠️   **Note**: This is not a safe configuration to use within a production environment.
 
 ## ✍️ Usage
 
