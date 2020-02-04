@@ -114,7 +114,7 @@ const shouldUpload = (uploadId, mutate, createRef) =>
             taskState,
             TaskStatus.UPLOADING
           );
-          mutate(state => state.set(uploadId, mutate, nextTaskState));
+          mutate(state => state.set(uploadId, nextTaskState));
           return Promise.resolve(nextTaskState);
         }
         return Promise.reject(
