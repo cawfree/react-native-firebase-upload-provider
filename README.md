@@ -16,13 +16,13 @@ Easily and quickly upload rich media to Firebase Storage. This library safely ha
 
 Using [`npm`]():
 
-```bash
+```shell
 npm install --save react-native-firebase-upload-provider
 ```
 
 Using [`yarn`]():
 
-```bash
+```shell
 yarn add react-native-firebase-upload-provider
 ```
 
@@ -34,18 +34,19 @@ yarn add react-native-firebase-upload-provider
   - Finally, you'll need to make sure your application has the appropriate permissions to write to the storage bucket.
     - By default, they do not permit anything to be written. For testing purposes, you can go ahead and turn `false` into `true` to permit anyone to read and write.
 
-```
+```diff
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     match /{allPaths=**} {
-      allow read, write: if false;
+-      allow read, write: if false;
++      allow read, write: if true;
     }
   }
 }
 
 ```
-> ⚠️   **Note**: This is not a safe configuration to use within a production environment, and you **will** regret it.
+> ⚠️   **Note**: This is not a safe configuration to use within a production environment.
 
 ## ✍️ Usage
 
@@ -53,7 +54,7 @@ service firebase.storage {
 
 ```javascript
 import React from 'react';
-import { Text } from 'react-native-firebase';
+import { Text } from 'react-native';
 import FirebaseUploadProvider from 'react-native-firebase-upload-provider';
 
 export default () => (
@@ -93,7 +94,7 @@ const [uploadId, beginUpload] = requestUpload('file://path/to/some/asset.jpeg');
   
   The `uploadId` is an internal [`uuidv4`](https://www.npmjs.com/package/uuid) which is used to uniquely track the transaction of the specified file, whilst `beginUpload` is a function which when invoked attempts to start the transaction, or restart the transaction if it had previously failed.
 
-  Upon completion, `beginUpload` resolves with the raw result of the transaction.
+  Upon completion, `beginUpload` resolves with the raw transaction, i.e. you can make a call to `getDownloadURL()` or `getMetadata()`.
 
 #### 2.2 `useUploads()`
 
@@ -113,4 +114,9 @@ return (
 
 ## ✌️ License
 [MIT](https://opensource.org/licenses/MIT)
-  
+
+<p align="center">
+  <a href="https://www.buymeacoffee.com/cawfree">
+    <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy @cawfree a coffee" width="232" height="50" />
+  </a>
+</p>
