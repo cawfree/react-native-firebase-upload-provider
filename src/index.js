@@ -73,31 +73,9 @@ const publishTaskUpdates = (uploadTask, mutate, uploadId) => {
   );
 };
 
-const shouldUpload = (uploadId, mutate, createRef) =>
+const performUpload = (uploadId, mutate, createRef, taskState) =>
   Promise.resolve()
     .then(() => {
-      const currentState = mutate();
-      const taskState = currentState.get(uploadId);
-      if (!!taskState && typeof taskState === "object") {
-        const { status } = taskState;
-        if (status === TaskStatus.CREATED || status === TaskStatus.ERROR) {
-          const nextTaskState = updateTaskStatus(
-            taskState,
-            TaskStatus.UPLOADING
-          );
-          mutate(state => state.set(uploadId, nextTaskState));
-          return Promise.resolve(nextTaskState);
-        }
-        return Promise.reject(
-          new Error("This task is not in the correct state to be uploaded.")
-        );
-      }
-
-      return Promise.reject(
-        new Error(`Attempted to upload an unrecogized uploadId, "${uploadId}".`)
-      );
-    })
-    .then(taskState => {
       const { uri, mimeType: contentType } = taskState;
       const ref = createRef(uploadId, taskState);
       const uploadTask = ref.putFile(uri, { contentType });
@@ -123,6 +101,31 @@ const shouldUpload = (uploadId, mutate, createRef) =>
       );
       return Promise.reject(e);
     });
+
+const shouldUpload = (uploadId, mutate, createRef) =>
+  Promise.resolve()
+    .then(() => {
+      const currentState = mutate();
+      const taskState = currentState.get(uploadId);
+      if (!!taskState && typeof taskState === "object") {
+        const { status } = taskState;
+        if (status === TaskStatus.CREATED || status === TaskStatus.ERROR) {
+          const nextTaskState = updateTaskStatus(
+            taskState,
+            TaskStatus.UPLOADING
+          );
+          mutate(state => state.set(uploadId, mutate, nextTaskState));
+          return Promise.resolve(nextTaskState);
+        }
+        return Promise.reject(
+          new Error("This task is not in the correct state to be uploaded.")
+        );
+      }
+      return Promise.reject(
+        new Error(`Attempted to upload an unrecogized uploadId, "${uploadId}".`)
+      );
+    })
+    .then(taskState => performUpload(uploadId, mutate, createRef, taskState));
 
 const requestUploadThunk = (mutate, supportedMimeTypes, createRef) => (
   uri,
